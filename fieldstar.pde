@@ -2,6 +2,7 @@ Particle[] theParticles = new Particle[10];
 
 void setup() {
 	size(600, 400);
+	background(255);
 	if (theParticles.length >= 3) {
 		theParticles[0] = new OddballParticle();
 		theParticles[1] = new JumboParticle();
