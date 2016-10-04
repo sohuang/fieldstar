@@ -20,9 +20,12 @@ void draw() {
 }
 
 void onEdge() {
-	for (int i = 0; i < theParticles.length; i++) {
-		if (theParticles[i].getMyX() <= 0 || theParticles[i].getMyX() >= width || theParticles[i].getMyY() <= 0 || theParticles[i].getMyY() >= height) {
-			theParticles[i].restart();
+	for (Particle particle : theParticles) {
+		if (particle.getMyX() < 0 - (particle.getMyWidth() / 2) || 
+			particle.getMyX() > width + (particle.getMyWidth() / 2) || 
+			particle.getMyY() < 0 - (particle.getMyHeight() / 2) || 
+			particle.getMyY() > height + (particle.getMyHeight() / 2)) {
+			particle.restart();
 		}
 	}
 }
@@ -48,6 +51,14 @@ class NormalParticle implements Particle {
 		return myY;
 	}
 
+	int getMyWidth() {
+		return myWidth;
+	}
+
+	int getMyHeight() {
+		return myHeight;
+	}
+
 	void show() {
 		ellipse((float)myX, (float)myY, myWidth, myHeight);
 	}
@@ -71,6 +82,8 @@ interface Particle {
 	public void restart();
 	public double getMyX();
 	public double getMyY();
+	public int getMyWidth();
+	public int getMyHeight();
 }
 
 class OddballParticle implements Particle {
@@ -93,6 +106,14 @@ class OddballParticle implements Particle {
 
 	double getMyY() {
 		return myY;
+	}
+
+	int getMyWidth() {
+		return myWidth;
+	}
+
+	int getMyHeight() {
+		return myHeight;
 	}
 
 	void show() {
